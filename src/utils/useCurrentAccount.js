@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import useUsers from "../hook/useUsers";
+import useUsers from "../hook/UseUsers";
 
 const useCurrentAccount = () => {
     const [currentAccount, setCurrentAccount] = useState('0');

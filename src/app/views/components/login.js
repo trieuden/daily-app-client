@@ -3,11 +3,11 @@ import { View, Text, TouchableOpacity } from "react-native";
 import { TextInput } from "@react-native-material/core";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { MaterialIcons, Entypo, AntDesign, FontAwesome } from "@expo/vector-icons";
-import { styles } from "../../css/loginStyle";
+import { styles } from "../../css/LoginStyle";
 
-import useUsers from "../../../hook/useUsers";
+import useUsers from "../../../hook/UseUsers";
 
-import loginController from "../../controller/loginController";
+import loginController from "../../controller/LoginController";
 
 const Login = ({ setKey }) => {
     const [userList, setUserList] = useState(null);

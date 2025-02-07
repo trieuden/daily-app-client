@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import UsersAPI from '../api/usersAPI';
-import TimestampConverter from '../utils/timestampConverter';
+import UsersAPI from '../api/UsersAPI';
+import TimestampConverter from '../utils/TimestampConverter';
 
 function useUsers() {
     const [useUserList, setUseUserList] = useState(null);

@@ -4,11 +4,11 @@ import { StyleSheet, View, Dimensions, Text, TouchableOpacity, SectionList } fro
 import { ProgressChart } from "react-native-chart-kit";
 import { MaterialIcons, FontAwesome5, Entypo } from "@expo/vector-icons";
 
-import useIncomes from "../../../hook/useIncomes";
-import useSpends from "../../../hook/useSpends";
+import useIncomes from "../../../hook/UseIncomes";
+import useSpends from "../../../hook/UseSpends";
 
-import useCurrentAccount from "../../../utils/useCurrentAccount";
-import OverviewController from "../../controller/overViewController";
+import useCurrentAccount from "../../../utils/UseCurrentAccount";
+import OverviewController from "../../controller/OverViewController";
 
 const screenWidth = Dimensions.get("window").width;
 
@@ -27,17 +27,18 @@ const Overview = () => {
     const [incomeMonthValue, setIncomeMonthValue] = useState(0);
     const [spendMonthValue, setSpendMonthValue] = useState(0);
     const [data7days, setData7days] = useState([]);
+    const [remainIncomePercent, setRemainIncome] = useState(1)
 
 
     const { getIncomeByDate, useIncomeList, getIncomesByUserId } = useIncomes();
-    const { getSpendByDate, getSpendByMonth, useSpendList, getSpendByUserIdAndBetweenDate } = useSpends()
+    const { getSpendByDate, getSpendByMonth, useSpendList } = useSpends()
 
     const currentAccount = useCurrentAccount()
+    
+    const {GetSpendsData7Days} = OverviewController()
+
 
     //controlller
-
-    const {GetData7Days} = OverviewController()
-
     useEffect(() => {
         const fetchData = async () => {
             const incomes = await getIncomeByDate(new Date());
@@ -50,18 +51,18 @@ const Overview = () => {
             });
             setSpendMonth(spends);
 
-            var data7days = await GetData7Days(currentAccount);
-            
+            let data7days = await GetSpendsData7Days(currentAccount);               
             setData7days(data7days)    
         }
         fetchData();
+        
     }, [currentAccount.id]);
 
 
 
     const data = {
         labels: ["Spend", "Income"], // optional
-        data: [0.4, 0.6],
+        data: [1, remainIncomePercent],
         colors: ['#00e699', '#004d33']
     };
 

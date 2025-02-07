@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SERVER_IP } from '../config/config';
+import { SERVER_IP } from '../config/Config';
 
 
 class IncomesAPI {

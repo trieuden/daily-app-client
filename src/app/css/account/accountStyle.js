@@ -15,25 +15,25 @@ export const styles = StyleSheet.create({
         borderBottomEndRadius: 20,
         borderBottomStartRadius: 20,
         overflow: 'hidden',
-        marginTop: 50
     },
     imageBackground: {
         height: '100%'
     },
     title: {
+        paddingTop: 50,
         fontSize: 24,
         fontWeight: '400',
         color: '#b3b3b3',
         marginHorizontal: 24
     },
-    infor: {
+    info: {
         width: '90%',
         backgroundColor: 'white',
         position: 'absolute',
         height: '70%',
         right: '5%',
         top: 170,
-        borderRadius: '15',
+        borderRadius: 15,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 1 },
         shadowOpacity: 0.2,

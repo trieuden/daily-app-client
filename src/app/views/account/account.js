@@ -2,8 +2,11 @@ import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { View, Text, Image, Modal, TouchableOpacity, ImageBackground, StyleSheet, Button, PanResponder, Dimensions } from 'react-native';
 import { FontAwesome, AntDesign, MaterialIcons, Feather } from '@expo/vector-icons';
 
-import { styles } from '../../css/account/accountStyle';
-import getCurrentAccount from '../../../utils/useCurrentAccount';
+import { styles } from '../../css/account/AccountStyle';
+import getCurrentAccount from '../../../utils/UseCurrentAccount';
+
+import { useTranslation } from 'react-i18next';
+import i18next from '../../../../services/i18next';
 
 const imageBackground = require('../../../../assets/images/imageBackground.png');
 
@@ -12,6 +15,8 @@ const Account = () => {
 
     const [modalVisible, setModalVisible] = useState(false);
     const [modalView, setModalView] = useState('Profile');
+
+    const {t} = useTranslation();
 
     const handleOpenModal = (view) => {
         setModalView(view);
@@ -39,7 +44,7 @@ const Account = () => {
                                 <Text style={styles.title}>Profile</Text>
                             </ImageBackground>
                         </View>
-                        <View style={styles.infor}>
+                        <View style={styles.info}>
                             <View>
                                 <View style={styles.avatarForm}>
                                     <FontAwesome name="camera" size={24} color="black" />
@@ -65,13 +70,13 @@ const Account = () => {
                                         </View>
                                         <MaterialIcons name="navigate-next" size={30} color="black" />
                                     </View>
-                                    <View style={styles.modal}>
+                                    <TouchableOpacity style={styles.modal}>
                                         <View style={styles.modal_item}>
                                             <AntDesign name="exclamationcircle" size={23} color="#999999" />
-                                            <Text style={styles.modal_text}>Feedback</Text>
+                                            <Text style={styles.modal_text}>Information</Text>
                                         </View>
                                         <MaterialIcons name="navigate-next" size={30} color="black" />
-                                    </View>
+                                    </TouchableOpacity>
                                 </View>
                             </View>
                         </View>

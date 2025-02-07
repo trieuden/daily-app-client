@@ -80,7 +80,7 @@ export const styles = StyleSheet.create({
     income_list: {
         paddingHorizontal: 5
     },
-    incomeitem: {
+    incomeItem: {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',

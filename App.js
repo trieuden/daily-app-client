@@ -1,6 +1,6 @@
 import Main from './src/app/views/Main';
 import { useState } from 'react';
-import Login from './src/app/views/components/login';
+import Login from './src/app/views/components/Login';
 
 export default function App() {
 

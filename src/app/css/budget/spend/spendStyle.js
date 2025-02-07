@@ -1,6 +1,9 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
+    spend_component:{
+        marginBottom: 10
+    },
     spend_date: {
         display: 'flex',
         flexDirection: 'row',
@@ -9,7 +12,7 @@ export const styles = StyleSheet.create({
         borderColor:'#99ffcc',
         borderWidth:1,
         paddingHorizontal: 10,
-        paddingVertical: 5
+        paddingVertical: 5,
     },
     
     spend_date_text: {
@@ -26,8 +29,9 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-between',
         borderWidth: 0.5,
         borderColor: '#cccccc',
-        marginTop: 3,
+        marginBottom: 3,
         padding: 10,
+        borderStyle:'dashed'
     },
     spend_name: {
         display: 'flex',

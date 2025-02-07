@@ -1,8 +1,8 @@
-import useIncomeItems from "../../hook/useIncomeItems";
-import useIncomes from "../../hook/useIncomes";
-import TimestampConverter from "../../utils/timestampConverter";
+import useIncomeItems from "../../../hook/UseIncomeItems";
+import useIncomes from "../../../hook/UseIncomes";
+import TimestampConverter from "../../../utils/TimestampConverter";
 
-function IncomesController() {
+function NewIncomesController() {
 
     const {addIncome, getIncomeByDate, updateIncome} = useIncomes();
     const {addIncomeItem} = useIncomeItems()
@@ -25,7 +25,7 @@ function IncomesController() {
         }
         const year = TimestampConverter.convert(currentIncome.month).newOnlyYear
         const month = TimestampConverter.convert(currentIncome.month).newOnlyMonth
-        var newIncomeItem = {
+        let newIncomeItem = {
             income_id: currentIncome.id,
             name: title,
             created_date: new Date(Date.UTC(year, month - 1, currentDay, 0, 0, 0)),
@@ -51,4 +51,4 @@ function IncomesController() {
         NewIncomesAction,
     }
 }
-export default IncomesController
+export default NewIncomesController

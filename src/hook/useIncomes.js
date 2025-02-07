@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import IncomesAPI from '../api/incomesAPI';
-import TimestampConverter from '../utils/timestampConverter';
+import IncomesAPI from '../api/IncomesAPI';
+import TimestampConverter from '../utils/TimestampConverter';
 
 function useIncomes() {
     const [useIncomeList, setUseIncomeList] = useState(null);

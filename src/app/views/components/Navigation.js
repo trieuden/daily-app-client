@@ -1,9 +1,9 @@
 import React, { useState, useRef } from 'react';
 import { View, Text, Image, Modal, TouchableOpacity, ImageBackground, StyleSheet, Button, PanResponder, Dimensions } from 'react-native';
 import { Foundation, AntDesign, Ionicons, Feather,FontAwesome6 } from '@expo/vector-icons';
-import { styles } from '../../css/navigationStyle';
+import { styles } from '../../css/NavigationStyle';
 
-import pageNavigation from '../../../utils/pageNavigation';
+import pageNavigation from '../../../utils/PageNavigation';
 
 const Navigation = () => {
     const { navigateToProfile, navigateToBudget, navigateToOverview, navigateToSetting } = pageNavigation();

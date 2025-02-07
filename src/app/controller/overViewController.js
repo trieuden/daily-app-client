@@ -1,14 +1,16 @@
 import { useState } from "react";
-import useSpends from "../../hook/useSpends";
+import useSpends from "../../hook/UseSpends";
 
 function OverviewController() {
 
   const {getSpendByUserIdAndDate, getSpendByUserIdAndBetweenDate} = useSpends()
 
 
-  const GetTotalDataDays = async (currentAccount ,currentDay, daysQuantity) => {
-    var total = 0;
-    const lastDays = new Date(currentDay.getFullYear(), currentDay.getMonth(), currentDay.getDate() - daysQuantity + 1); 
+  //lấy tổng chi tiêu trong 7 ngày trước
+  const GetTotalSpends7Days = async (currentAccount ,currentDay) => {    
+    let total = 0;
+    const lastDays = new Date(currentDay.getFullYear(), currentDay.getMonth(), currentDay.getDate() - 5); 
+    
     const spends = getSpendByUserIdAndBetweenDate(currentAccount.id, lastDays, currentDay);
     spends.forEach(spend => {
       total += spend.total;
@@ -16,7 +18,8 @@ function OverviewController() {
     return total
   }
 
-  const GetData7Days = async (currentAccount) => {
+  const GetSpendsData7Days = async (currentAccount) => {
+    
     const data7days = [
       { id: "1", labels: ["Spend"], data: [0.4], colors: ["#00e699"] },
       { id: "2", labels: ["Spend"], data: [0.4], colors: ["#00e699"] },
@@ -26,9 +29,10 @@ function OverviewController() {
       { id: "6", labels: ["Spend"], data: [0.4], colors: ["#00e699"] },
       { id: "7", labels: ["Spend"], data: [0.4], colors: ["#00e699"] },
     ];
+    
     const today = new Date();
-
-    const total7Days = GetTotalDataDays(currentAccount.id, today);
+    
+    const total7Days = GetTotalSpends7Days(currentAccount.id, today);    
 
     for (let i = 0; i < 7; i++) {
       const currentDay = new Date();
@@ -52,7 +56,7 @@ function OverviewController() {
     return data7days;
   };
   return {
-    GetData7Days,
+    GetSpendsData7Days,
   };
 }
 export default OverviewController;

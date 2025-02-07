@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, ScrollView, Image, TouchableOpacity, TextInput, FlatList } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 
-import useSpendItems from '../../../../hook/useSpendItems';
-import useSpendTypes from '../../../../hook/useSpendTypes';
+import useSpendItems from '../../../../hook/UseSpendItems';
+import useSpendTypes from '../../../../hook/UseSpendTypes';
 
-import TimestampConverter from '../../../../utils/timestampConverter';
-import { styles } from '../../../css/budget/spend/spendStyle';
+import TimestampConverter from '../../../../utils/TimestampConverter';
+import { styles } from '../../../css/budget/spend/SpendStyle';
 
 const SpendItem = ({ spendItem, refreshKey }) => {
     const { getSpendTypeById } = useSpendTypes();
@@ -61,7 +61,7 @@ const Spend = ({ spend, refreshKey }) => {
     }, [spend, refreshKey]);
 
     return (
-        <View>
+        <View style={styles.spend_component}>
             <View style={styles.spend_date}>
                 <Text style={styles.spend_date_text}>
                     {TimestampConverter.convert(spend.created_date).newDate}

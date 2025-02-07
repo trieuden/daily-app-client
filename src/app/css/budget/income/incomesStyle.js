@@ -36,34 +36,40 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     section_title: {
-        fontSize: 12
+        fontSize: 12,
+        color:'#999999'
     },
     section_value: {
         fontSize: 18,
-        fontWeight: '500'
+        fontWeight: '500',
+        color:'#3399ff'
     },
-    touch_newIncome: {
+    button_newIncome: {
         backgroundColor: '#00cc88',
         height: 35,
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 15,
-        borderRadius: 8
+        borderRadius: 18,
+        flexDirection:'row'
     },
-    touch_title: {
-        fontSize: 16,
-        fontWeight: '500'
+    button_newIncome_title: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        marginLeft: 3,
+        color:'white'
     },
     income_month: {
         width: '97%',
         alignSelf: 'center',
         padding: 5,
-        marginTop: 20
+        marginTop: 10
     },
     income_month_title: {
+        marginVertical: 10,
         fontSize: 18,
-        fontWeight: 'bold',
-        color: '#004d33'
+        color: "#737373",
+        fontWeight: "500",
     },
     income_list: {
     },
@@ -73,7 +79,10 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-between',
         paddingHorizontal: 20,
         paddingVertical: 12,
-        alignItems: 'center'
+        alignItems: 'center',
+        borderRadius: 20,
+        margin: 2,
+        backgroundColor:'#f2f2f2'
     },
     total_month_value: {
         fontSize: 16,

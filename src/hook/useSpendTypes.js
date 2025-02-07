@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import SpendTypesAPI from '../api/spendTypesAPI';
+import SpendTypesAPI from '../api/SpendTypesAPI';
 
 function useSpendTypes() {
     const [useSpendTypesList, setUseSpendTypesList] = useState(null);

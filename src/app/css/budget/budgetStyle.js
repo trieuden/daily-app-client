@@ -3,8 +3,6 @@ import { StyleSheet } from "react-native"
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingLeft: 10,
-        paddingRight: 10,
         backgroundColor: 'white',
     },
     header: {
@@ -12,13 +10,18 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         marginTop: 50,
+        paddingBottom: 5
     },
     buttonComponent: {
         display:'flex',
         flexDirection:'row',
-        backgroundColor:'#e6e6e6',
+        backgroundColor:'white',
         padding: 2,
-        borderRadius: 5
+        borderRadius: 5,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.2,
+        shadowRadius: 3.84,
     },
     button: {
         height: 35,
@@ -27,7 +30,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderWidth: 0.5,
-        borderColor: '#e6e6e6',
+        borderColor: 'white',
         borderRadius: 5
     },
     button_text: {

@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { View, Text, Image, TouchableOpacity, TextInput, FlatList, SectionList, SafeAreaView, Alert, StyleSheet } from 'react-native';
 
-import Spends from './spend/spends';
-import Incomes from './income/incomes';
+import Spends from './spend/Spends';
+import Incomes from './income/Incomes';
 
-import { styles } from '../../css/budget/budgetStyle';
+import { styles } from '../../css/budget/BudgetStyle';
 
 const Budget = () => {
 
@@ -25,14 +25,15 @@ const Budget = () => {
         <SectionList
             sections={[{ title: 'Main', data: [{}] }]}
             keyExtractor={(item, index) => index.toString()}
+            style={{backgroundColor:'white'}}
             renderItem={() => (
                 <View style={styles.container}>
                     <View style={styles.header}>
                         <View style={styles.buttonComponent}>
-                            <TouchableOpacity style={[styles.button, { backgroundColor: currentView === 'Spend' ? 'white' : '#e6e6e6' }]} onPress={() => setCurrentView('Spend')}>
+                            <TouchableOpacity style={[styles.button, { backgroundColor: currentView === 'Spend' ? '#00cc88' : 'white' }]} onPress={() => setCurrentView('Spend')}>
                                 <Text style={styles.button_text}>Spend</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={[styles.button, { backgroundColor: currentView === 'Income' ? 'white' : '#e6e6e6' }]} onPress={() => setCurrentView('Income')}>
+                            <TouchableOpacity style={[styles.button, { backgroundColor: currentView === 'Income' ? '#00cc88' : 'white' }]} onPress={() => setCurrentView('Income')}>
                                 <Text style={styles.button_text}>Income</Text>
                             </TouchableOpacity>
                         </View>

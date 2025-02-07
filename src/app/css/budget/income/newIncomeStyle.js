@@ -1,81 +1,69 @@
 import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: '#b5b5b575',
-        justifyContent: 'center',
-        alignItems: 'center',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.4,
-        shadowRadius: 3.84,
-    },
-    box: {
-        backgroundColor: 'white',
-        width: '100%',
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.4,
-        shadowRadius: 3.84,
-        borderTopStartRadius: 12,
-        borderTopEndRadius: 12,
-        overflow: 'hidden'
+        backgroundColor: "white",
+        width: "100%",
+        height: "100%",
+        paddingTop: 40
     },
     header: {
-        paddingVertical: 10,
-        alignItems: 'center',
+        paddingHorizontal: 10,
+        display:'flex',
+        flexDirection:'row',
+        justifyContent:'space-between',
+        marginTop: 5,
+        marginBottom: 20,
+        alignItems:'center'
     },
     title: {
         fontSize: 19,
-        fontWeight: 'bold',
-        color: '#666666'
+        fontWeight: "bold",
+        color: "#666666",
+
     },
     month: {
-        fontStyle: 'italic'
+        fontStyle: "italic",
     },
-    inputComponent: {
+    input_component: {
         padding: 10,
-        backgroundColor: '#f2f2f2',
         borderRadius: 5,
-        margin: 8
+        margin: 8,
     },
     input: {
-        display: 'flex',
-        flexDirection: 'row',
-        backgroundColor: 'white',
+        display: "flex",
+        flexDirection: "row",
+        backgroundColor: "white",
         marginVertical: 3,
-        alignItems: 'center',
+        alignItems: "center",
         borderWidth: 0.5,
         borderTopStartRadius: 10,
         borderBottomStartRadius: 10,
-        overflow: 'hidden',
-        borderColor: '#808080',
+        overflow: "hidden",
+        borderColor: "#808080",
         height: 45,
+        marginBottom: 30
     },
-    inputName: {
+    inputTitle: {
         padding: 5,
-        backgroundColor: '#e6e6e6',
         width: 80,
-        height: '100%',
-        justifyContent: 'center'
+        height: "100%",
+        justifyContent: "center",
+        borderRightWidth: 1
     },
-    inputName_text: {
-        textAlign: 'center',
-        fontWeight: 'bold',
+    inputTitle_text: {
+        textAlign: "center",
+        fontWeight: "bold",
         fontSize: 15,
-        color: '#004d33'
-
+        color: "#004d33",
     },
     inputValue: {
         fontSize: 18,
         flex: 1,
-        paddingLeft: 3
+        paddingLeft: 3,
     },
-    dateComponent: {
-        display: 'flex',
-        flexDirection: 'row',
-        padding: 5,
-        marginHorizontal: 10,
-        alignItems: 'center',
+    date_component: {
+        display: "flex",
+        alignItems:'flex-end',
     },
     selectDate: {
         fontSize: 16,
@@ -83,43 +71,37 @@ export const styles = StyleSheet.create({
         height: 30,
         width: 80,
         borderRadius: 15,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#00cc88',
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#00cc88",
     },
     select_text: {
         inputIOS: {
-            textAlign: 'center',
-            height: '100%',
-            width: '100%',
-            fontWeight: '500',
-            fontSize: 16
-        }
-
+            textAlign: "center",
+            height: "100%",
+            width: "100%",
+            fontWeight: "500",
+            fontSize: 16,
+        },
     },
     buttonComponent: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
         paddingVertical: 3,
     },
     touch: {
         height: 40,
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: 100,
-        borderRadius: 5,
+        alignItems: "center",
+        justifyContent: "center",
+        width: '90%',
+        borderRadius: 45,
         marginBottom: 5,
-    },
-    touch_left: {
-        borderTopEndRadius: 30,
-        backgroundColor: '#008040',
+        backgroundColor: "#00b377",
     },
     touch_text: {
-        fontWeight: '500',
+        fontWeight: "500",
         fontSize: 16,
+        color: "white",
     },
-    touch_text_left: {
-        color: 'white'
-    },
-})
+});

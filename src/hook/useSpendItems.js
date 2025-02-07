@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import SpendItemsAPI from '../api/spendItemsAPI';
+import SpendItemsAPI from '../api/SpendItemsAPI';
 
 function useSpendItems() {
     const [useSpendItemList, setUseSpendItemList] = useState(null);

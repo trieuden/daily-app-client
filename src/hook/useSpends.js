@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import SpendsAPI from '../api/spendsAPI';
-import TimestampConverter from '../utils/timestampConverter';
+import SpendsAPI from '../api/SpendsAPI';
+import TimestampConverter from '../utils/TimestampConverter';
 
 function useSpends() {
     const [useSpendList, setUseSpendList] = useState(null);

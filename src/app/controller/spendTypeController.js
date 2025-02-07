@@ -12,14 +12,14 @@ function SpendTypeController() {
         if (price == 0) {
             return { status: false, value: 'Spend type price must be greater than 0' };
         }
-        const newSpendtype = {
+        const newSpendType = {
             name: name,
             image: base64Image,
             price: price,
             status: 'active'
         }
-        await addSpendType(newSpendtype);
-        return { status: true, value: 'Success !', data: newSpendtype };
+        await addSpendType(newSpendType);
+        return { status: true, value: 'Success !', data: newSpendType };
     }
     return {
         NewSpendTypeAction,

@@ -1,14 +1,14 @@
 import { StyleSheet, View, TouchableOpacity, Text, Modal, } from "react-native"
 import { AntDesign } from "@expo/vector-icons"
-import TimestampConverter from "../../../../utils/timestampConverter"
+import TimestampConverter from "../../../../utils/TimestampConverter"
 import { useEffect, useState, memo, useMemo } from "react"
 
-import useIncomeItems from "../../../../hook/useIncomeItems"
-import useIncomes from "../../../../hook/useIncomes"
+import useIncomeItems from "../../../../hook/UseIncomeItems"
+import useIncomes from "../../../../hook/UseIncomes"
 
-import NewIncome from "./newIncome"
+import NewIncome from "./NewIncome"
 
-import { styles } from "../../../css/budget/income/incomeDetailStyle"
+import { styles } from "../../../css/budget/income/IncomeDetailStyle"
 
 
 const IncomeDetail = ({ onCloseModal, currentIncome }) => {
@@ -68,7 +68,7 @@ const IncomeDetail = ({ onCloseModal, currentIncome }) => {
                         <View style={styles.income_list}>
                             {incomeItemList != null ? (
                                 [...incomeItemList].reverse().map((item) => (
-                                    <View style={styles.incomeitem} key={item.id}>
+                                    <View style={styles.incomeItem} key={item.id}>
                                         <View>
                                             <Text style={styles.incomeItem_title}>{item.name}</Text>
                                             <Text style={styles.incomeItem_date}>{TimestampConverter.convert(item.created_date).newDate}</Text>

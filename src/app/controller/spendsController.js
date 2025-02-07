@@ -1,5 +1,5 @@
-import useSpends from "../../hook/useSpends";
-import useSpendItems from "../../hook/useSpendItems";
+import useSpends from "../../hook/UseSpends";
+import useSpendItems from "../../hook/UseSpendItems";
 
 function SpendsController()  {
 
