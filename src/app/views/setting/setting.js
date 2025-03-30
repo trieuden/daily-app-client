@@ -7,6 +7,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import styles from "../../css/setting/SettingStyle";
 import SettingController from "../../controller/setting/SettingController";
 
+import { useTranslation } from "react-i18next";
+
 import LanguageModal from "./LanguageModal";
 
 const Setting = ({ setKey }) => {
@@ -15,6 +17,8 @@ const Setting = ({ setKey }) => {
 
     const [modalVisible, setModalVisible] = useState(false);
     const [currentModal, setCurrentModal] = useState("language");
+
+    const {t} = useTranslation()
 
     const {actionLogout} = SettingController()
 
@@ -43,21 +47,21 @@ const Setting = ({ setKey }) => {
             style={styles.container}
             renderItem={() => (
                 <View style={styles.main}>
-                    <Text style={styles.title}>Setting</Text>
+                    <Text style={styles.title}>{t("Setting_title")}</Text>
                     <View style={styles.header}>
-                        <Text style={styles.header_title}>Preferences</Text>
+                        <Text style={styles.header_title}>{t("Preferences_title")}</Text>
                     </View>
                     <TouchableOpacity style={styles.option}>
                         <View>
-                            <Text style={styles.option_name}>Theme</Text>
-                            <Text style={styles.option_value}>Light</Text>
+                            <Text style={styles.option_name}>{t("Theme_title")}</Text>
+                            <Text style={styles.option_value}>{t("Light_title")}</Text>
                         </View>
                         <Entypo name="chevron-small-right" size={24} color="black" />
                     </TouchableOpacity>
                     <View style={styles.option}>
                         <View>
-                            <Text style={styles.option_name}>Notification</Text>
-                            <Text style={styles.option_value}>On</Text>
+                            <Text style={styles.option_name}>{t("Notification_title")}</Text>
+                            <Text style={styles.option_value}>{t("On_title")}</Text>
                         </View>
                         <Switch
                             trackColor={"#81b0ff"}
@@ -70,13 +74,13 @@ const Setting = ({ setKey }) => {
                     </View>
                     <TouchableOpacity style={styles.option} onPress={() => handleOpenLanguageModal()}>
                         <View>
-                            <Text style={styles.option_name}>Language</Text>
-                            <Text style={styles.option_value}>Tiếng anh</Text>
+                            <Text style={styles.option_name}>{t("Language_title")}</Text>
+                            <Text style={styles.option_value}>{t("Language_value_title")}</Text>
                         </View>
                         <Entypo name="chevron-small-right" size={24} color="black" />
                     </TouchableOpacity>
                     <View style={styles.header}>
-                        <Text style={styles.header_title}>About</Text>
+                        <Text style={styles.header_title}>{t("About_title")}</Text>
                     </View>
                     <TouchableOpacity style={styles.option}>
                         <View>
@@ -87,10 +91,10 @@ const Setting = ({ setKey }) => {
                     </TouchableOpacity>
                     <View>
                         <Text style={[styles.btn_logout, { color: "red" }]} onPress={ async () => await actionLogout(setKey)}>
-                            Logout
+                            {t("Logout_title")}
                         </Text>
                     </View>
-                    <Modal animationType="slide" transparent={true} visible={modalVisible}>
+                    <Modal animationType="fade" transparent={true} visible={modalVisible}>
                         {renderModal}
                     </Modal>
                 </View>

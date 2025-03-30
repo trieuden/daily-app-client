@@ -1,19 +1,24 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
-import { View, Text, Image, TouchableOpacity, TextInput, FlatList, SectionList, SafeAreaView, Alert } from "react-native";
+import { View, Text, Image, TouchableOpacity, TextInput, Modal, FlatList, SectionList, SafeAreaView, Alert } from "react-native";
 import { AntDesign, MaterialIcons, MaterialCommunityIcons } from "@expo/vector-icons";
 import RNDateTimePicker from "@react-native-community/datetimepicker";
-import SpendsController from "../../../controller/SpendsController";
+
+import SpendsController from "../../../controller/spend/SpendsController";
 
 import useSpendTypes from "../../../../hook/UseSpendTypes";
 import useSpends from "../../../../hook/UseSpends";
 
 import { styles } from "../../../css/budget/spend/SpendsStyle";
+import { useTranslation } from "react-i18next";
+
 import Spend from "./Spend";
-import useCurrentAccount from "../../../../utils/UseCurrentAccount";
-import { Modal } from "react-native";
 import NewSpendType from "./NewSpendType";
 
+import useCurrentAccount from "../../../../utils/UseCurrentAccount";
+
 const Spends = () => {
+    const { t } = useTranslation();
+
     const [refreshKey, setRefreshKey] = useState(0);
     const [currentDate, setCurrentDate] = useState(new Date());
 
@@ -30,11 +35,11 @@ const Spends = () => {
 
     const [modalVisible, setModalVisible] = useState(false);
 
-    //controlller
-
-    const { newSpendAction } = SpendsController();
-
     const currentAccount = useCurrentAccount();
+
+    //controlller
+    const { newSpendAction, handleCloseModal } = SpendsController();
+
 
     //fetch data spend type
     useEffect(() => {
@@ -55,17 +60,6 @@ const Spends = () => {
         setMoneySpent(spendType.price.toString());
     }, []);
 
-    //action new spend
-    const handleNewSpend = async () => {
-        try {
-            const spendsController = await newSpendAction(currentAccount, currentType, moneySpent, description, currentDate);
-            setRefreshKey(spendsController.data);
-
-            Alert.alert("App", spendsController.value, [{ text: "OK" }]);
-        } catch (error) {
-            console.error(error);
-        }
-    };
 
     //render spend type theo kiểu nào
     const renderItem = useCallback(
@@ -105,39 +99,24 @@ const Spends = () => {
         [spendList, refreshKey]
     );
 
-    // close modal
-    const handleCloseModal = async () => {
-        setModalVisible(false);
-
-        // render lại data
-        const spendList = await getSpendTypeByUserId(currentAccount.id);
-        setSpendList(spendList);
-        if (useSpendTypesList) {
-            setSpendTypeListData([{ id: -1, name: "+", status: "active" }, ...useSpendTypesList]);
-        }
-    };
-
     return (
         <View style={styles.container}>
             <View style={styles.date_container}>
                 <AntDesign name="left" size={26} color="#00cc88" />
                 <View style={styles.date_picker}>
-                    <RNDateTimePicker
-                        value={currentDate}
-                        onChange={(event, date) => setCurrentDate(date)}
-                    />
+                    <RNDateTimePicker value={currentDate} onChange={(event, date) => setCurrentDate(date)} />
                 </View>
                 <AntDesign name="right" size={26} color="#00cc88" />
             </View>
             <View style={styles.values}>
                 <View style={styles.moneySpent}>
                     <MaterialIcons name="attach-money" size={24} color="#009966" />
-                    <Text style={styles.moneySpent_text}>Money Spent:</Text>
+                    <Text style={styles.moneySpent_text}>{t("MoneySpent_title")}</Text>
                     <TextInput style={styles.moneySpent_input} inputMode="numeric" value={moneySpent.toLocaleString("vi-VN")} onChangeText={(value) => setMoneySpent(value)} />
                 </View>
                 <View style={styles.spendTypes}>
                     <View style={styles.spendTypesTitle}>
-                        <Text style={styles.spendTypesTitle_text}>Spend Types</Text>
+                        <Text style={styles.spendTypesTitle_text}>{t("SpentTypes_title")}</Text>
                         <TouchableOpacity onPress={() => setExpanded(!expanded)}>
                             <AntDesign name={expanded ? "down" : "right"} size={20} color="#006652" />
                         </TouchableOpacity>
@@ -158,17 +137,17 @@ const Spends = () => {
                 </View>
 
                 <View style={styles.note_container}>
-                    <Text style={styles.spendTypesTitle_text}>Note</Text>
+                    <Text style={styles.spendTypesTitle_text}>{t("Note_title")}</Text>
                     <TextInput multiline={true} style={styles.spendDescription} onChangeText={(text) => setDescription(text)} />
                 </View>
-                <TouchableOpacity style={styles.buttonSave} onPress={handleNewSpend}>
+                <TouchableOpacity style={styles.buttonSave} onPress={async () => await newSpendAction(currentAccount, currentType, moneySpent, description, currentDate, setRefreshKey)}>
                     <MaterialIcons name="data-saver-off" size={24} color="white" />
-                    <Text style={styles.buttonSave_title}>Save</Text>
+                    <Text style={styles.buttonSave_title}>{t("Save_title")}</Text>
                 </TouchableOpacity>
             </View>
             <View style={styles.spendList}>{spendComponents}</View>
             <Modal animationType="fade" transparent={true} visible={modalVisible}>
-                <NewSpendType onCloseModal={handleCloseModal} />
+                <NewSpendType onCloseModal={() => handleCloseModal(setModalVisible, setSpendList, setSpendTypeListData)} />
             </Modal>
         </View>
     );

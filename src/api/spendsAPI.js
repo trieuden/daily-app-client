@@ -94,7 +94,7 @@ class SpendsAPI {
                     date: date
                 }
             })
-            return response[0]
+            return response
         } catch (error) {
             console.error('Error get spends:', error);
             throw new Error('Error get spends via the API');

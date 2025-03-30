@@ -10,67 +10,61 @@ import useSpends from "../../../hook/UseSpends";
 import useCurrentAccount from "../../../utils/UseCurrentAccount";
 import OverviewController from "../../controller/OverViewController";
 
+import { styles } from "../../css/overview/OverviewStyle";
+
+import { useTranslation } from "react-i18next";
+
 const screenWidth = Dimensions.get("window").width;
 
 const chartConfig = {
-    backgroundGradientFrom: '#f2f2f2',
+    backgroundGradientFrom: "#f2f2f2",
     backgroundGradientFromOpacity: 1,
-    backgroundGradientTo: '#f2f2f2',
+    backgroundGradientTo: "#f2f2f2",
     backgroundGradientToOpacity: 0.5,
     color: (opacity = 5) => `rgba(175, 169, 169, ${opacity})`,
     useShadowColorFromDataset: false,
 };
 
 const Overview = () => {
-    const [incomeMonth, setIncomeMonth] = useState([]);
-    const [spendMonth, setSpendMonth] = useState([]);
-    const [incomeMonthValue, setIncomeMonthValue] = useState(0);
-    const [spendMonthValue, setSpendMonthValue] = useState(0);
+    const [budgetThisMonth, setBudgetThisMonth] = useState(null);
     const [data7days, setData7days] = useState([]);
-    const [remainIncomePercent, setRemainIncome] = useState(1)
+    const [totalData7days, setTotalData7days] = useState(0);
 
+    const [remainIncomePercent, setRemainIncomePercent] = useState(1);
+    const [remainSpendPercent, setRemainSpendPercent] = useState(1);
 
     const { getIncomeByDate, useIncomeList, getIncomesByUserId } = useIncomes();
-    const { getSpendByDate, getSpendByMonth, useSpendList } = useSpends()
+    const { getSpendByDate, getSpendByMonth, useSpendList } = useSpends();
 
-    const currentAccount = useCurrentAccount()
-    
-    const {GetSpendsData7Days} = OverviewController()
+    const currentAccount = useCurrentAccount();
 
+    const { t } = useTranslation();
+
+    const { GetTotalSpends7Days, GetSpendsData7Days, GetBudgetThisMonth } = OverviewController();
 
     //controlller
     useEffect(() => {
         const fetchData = async () => {
-            const incomes = await getIncomeByDate(new Date());
-            setIncomeMonth(incomes);
-            setIncomeMonthValue(incomes.total);
+            //budget this month
+            await GetBudgetThisMonth(setBudgetThisMonth, setRemainIncomePercent, setRemainSpendPercent);
 
-            const spends = await getSpendByMonth(new Date());
-            spends.forEach(item => {
-                setSpendMonthValue(spendMonthValue + item.total)
-            });
-            setSpendMonth(spends);
-
-            let data7days = await GetSpendsData7Days(currentAccount);               
-            setData7days(data7days)    
-        }
+            //lấy dữ liệu 7 ngày vừa qua
+            setTotalData7days(await GetTotalSpends7Days(currentAccount, new Date()));
+            await GetSpendsData7Days(currentAccount, setData7days);
+        };
         fetchData();
-        
-    }, [currentAccount.id]);
-
-
+    }, [currentAccount, useSpendList, useIncomeList]);
 
     const data = {
         labels: ["Spend", "Income"], // optional
-        data: [1, remainIncomePercent],
-        colors: ['#00e699', '#004d33']
+        data: [1 - remainIncomePercent, remainIncomePercent],
+        colors: ["#00e699", "#004d33"],
     };
 
-
     const chartConfigItem = {
-        backgroundGradientFrom: 'white',
+        backgroundGradientFrom: "white",
         backgroundGradientFromOpacity: 1,
-        backgroundGradientTo: 'white',
+        backgroundGradientTo: "white",
         backgroundGradientToOpacity: 0.5,
         color: (opacity = 5) => `rgba(175, 169, 169, ${opacity})`,
         useShadowColorFromDataset: false,
@@ -78,39 +72,34 @@ const Overview = () => {
 
     return (
         <SectionList
-            sections={[{ title: 'Main', data: [{}] }]}
+            sections={[{ title: "Main", data: [{}] }]}
             keyExtractor={(item, index) => index.toString()}
             renderItem={() => (
                 <View style={styles.container}>
-                    <Text style={styles.title} >Overview</Text>
+                    <Text style={styles.title}>{t("Overview_title")}</Text>
                     <View style={styles.main_chart}>
-                        <ProgressChart
-                            data={data}
-                            width={screenWidth}
-                            height={220}
-                            radius={30}
-                            chartConfig={chartConfig}
-                            hideLegend={true}
-                            withCustomBarColorFromData={true}
-                            strokeWidth={11}
-                        />
+                        <ProgressChart data={data} width={screenWidth} height={220} radius={30} chartConfig={chartConfig} hideLegend={true} withCustomBarColorFromData={true} strokeWidth={11} />
                         <View style={styles.ov_this_month}>
                             <FontAwesome5 name="coins" size={20} color="#00e699" />
-                            <Text style={[styles.ov_this_month_title, { color: '#00e699' }]}>Your spending amount this month: <Text style={styles.ov_this_month_value}>{spendMonthValue.toLocaleString('vi-VN')} đ</Text></Text>
+                            <Text style={[styles.ov_this_month_title, { color: "#00e699" }]}>
+                                {t("Spend-amount-month_title")} <Text style={styles.ov_this_month_value}>{budgetThisMonth ? budgetThisMonth.spends.total.toLocaleString("vi-VN") : 0} đ</Text>
+                            </Text>
                         </View>
                         <View style={styles.ov_this_month}>
                             <MaterialIcons name="ssid-chart" size={20} color="#004d33" />
-                            <Text style={[styles.ov_this_month_title, { color: '#004d33' }]}>Income amount this month: <Text style={styles.ov_this_month_value}>{incomeMonthValue.toLocaleString('vi-VN')} đ</Text></Text>
+                            <Text style={[styles.ov_this_month_title, { color: "#004d33" }]}>
+                                {t("Income-amount-month_title")} <Text style={styles.ov_this_month_value}>{budgetThisMonth ? budgetThisMonth.incomes.total.toLocaleString("vi-VN") : 0} đ</Text>
+                            </Text>
                         </View>
                     </View>
                     <View style={styles.box}>
                         <TouchableOpacity style={styles.header_box}>
-                            <Text style={styles.header_box_title}>Daily spending</Text>
+                            <Text style={styles.header_box_title}>{t("DailySpend_title")}</Text>
                             <Entypo name="chevron-small-right" size={24} color="black" />
                         </TouchableOpacity>
-                        <Text style={styles.header_box_time}>7 days</Text>
+                        <Text style={styles.header_box_time}>{t("7days_title")}</Text>
                         <View style={styles.spend_7days}>
-                            <Text style={styles.spend_7days_total}>100.000 đ</Text>
+                            <Text style={styles.spend_7days_total}>{totalData7days.toLocaleString("vi-VN")} đ</Text>
                             <View style={styles.chart_7days}>
                                 {data7days.reverse().map((item) => (
                                     <View style={styles.chart_day} key={item.id}>
@@ -133,83 +122,6 @@ const Overview = () => {
                 </View>
             )}
         />
-    )
-}
-export default Overview
-
-const styles = StyleSheet.create({
-    container: {
-        width: '100%',
-        flex: 1,
-        backgroundColor: '#f2f2f2',
-        paddingTop: 30
-    },
-    title: {
-        fontSize: 24,
-        marginHorizontal: 24,
-        fontWeight: '400',
-        color: '#b3b3b3',
-        marginTop: 24
-    },
-    main_chart: {
-        backgroundColor: '#f2f2f2'
-    },
-    ov_this_month: {
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    ov_this_month_title: {
-        paddingHorizontal: 5,
-        fontWeight: '500'
-    },
-    ov_this_month_value: {
-        color: '#006644',
-        fontSize: 16,
-        fontWeight: 'bold'
-    },
-    box: {
-        backgroundColor: 'white',
-        margin: 20,
-        padding: 15,
-        borderRadius: 7,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.2,
-    },
-    header_box: {
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between'
-    },
-    header_box_title: {
-        fontWeight: '500',
-        fontSize: 16
-    },
-    header_box_time: {
-        fontSize: 12,
-        color: '#666666'
-    },
-    spend_7days: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingTop: 20
-    },
-    spend_7days_total: {
-        fontSize: 19,
-        color: '#00994d',
-        fontWeight: '600'
-    },
-    chart_7days: {
-        display: 'flex',
-        flexDirection: 'row'
-    },
-    chart_day: {
-        display: 'flex',
-        alignItems: 'center',
-        marginHorizontal: 3
-    }
-})
+    );
+};
+export default Overview;

@@ -3,6 +3,9 @@ import { AntDesign } from "@expo/vector-icons"
 import TimestampConverter from "../../../../utils/TimestampConverter"
 import { useEffect, useState, memo, useMemo } from "react"
 
+import { useTranslation } from "react-i18next";
+
+
 import useIncomeItems from "../../../../hook/UseIncomeItems"
 import useIncomes from "../../../../hook/UseIncomes"
 
@@ -15,6 +18,8 @@ const IncomeDetail = ({ onCloseModal, currentIncome }) => {
     const [incomeItemList, setIncomeItemList] = useState(null)
     const [modalVisible, setModalVisible] = useState(false);
     const [income, setIncome] = useState(null);
+
+    const {t} = useTranslation()
 
 
     const { useIncomeItemList, getIncomeItemsByIncomeId } = useIncomeItems()
@@ -42,7 +47,7 @@ const IncomeDetail = ({ onCloseModal, currentIncome }) => {
                 <Text style={styles.incomeTotal}>{income.total.toLocaleString('vi-VN')} đ</Text>
                 <Text style={styles.incomeMonth}>{TimestampConverter.convert(income.month).newMonth}</Text>
                 <TouchableOpacity style={styles.touch_newItem} onPress={() => setModalVisible(true)}>
-                    <Text style={styles.touch_text}>Add</Text>
+                    <Text style={styles.touch_text}>{t("Add_title")}</Text>
                 </TouchableOpacity>
             </View>
         ) : (
@@ -64,7 +69,7 @@ const IncomeDetail = ({ onCloseModal, currentIncome }) => {
                 <View style={styles.content}>
                     {incomeHeader}
                     <View style={styles.incomeItems}>
-                        <Text style={styles.income_detail_title}>Detail</Text>
+                        <Text style={styles.income_detail_title}>{t("Detail_title")}</Text>
                         <View style={styles.income_list}>
                             {incomeItemList != null ? (
                                 [...incomeItemList].reverse().map((item) => (

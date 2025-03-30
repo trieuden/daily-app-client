@@ -4,6 +4,8 @@ import { View, StyleSheet, Text } from "react-native";
 
 import { MaterialIcons, Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 
+import { useTranslation } from "react-i18next";
+
 import useCurrentAccount from "../../../../utils/UseCurrentAccount";
 import TimestampConverter from "../../../../utils/TimestampConverter";
 
@@ -18,6 +20,8 @@ import { styles } from "../../../css/budget/income/IncomesStyle";
 
 const Incomes = () => {
     const currentAccount = useCurrentAccount();
+
+    const {t} = useTranslation()
 
     const { useIncomeList, getIncomesByUserId, getIncomeByDate, getIncomeById } = useIncomes();
     const { useIncomeItemList, getIncomeItemsByIncomeId } = useIncomeItems();
@@ -92,7 +96,7 @@ const Incomes = () => {
                                 <Text style={styles.total_month_text}>{TimestampConverter.convert(item.month).newMonth}</Text>
                             </View>
                             <View style={{ flexDirection: "row", alignItems: "center" }}>
-                                <Text style={styles.total_month_items}>{incomeItems.length} items</Text>
+                                <Text style={styles.total_month_items}>{incomeItems.length} {t("items_title")}</Text>
                                 <Entypo name="chevron-small-right" size={30} color="black" />
                             </View>
                         </TouchableOpacity>
@@ -108,26 +112,26 @@ const Incomes = () => {
         <View style={styles.container}>
             <View style={styles.total_view}>
                 <Text style={styles.total}>{currentIncomeValue.toLocaleString("vi-VN")} đ</Text>
-                <Text style={styles.total_title}>Total Income</Text>
+                <Text style={styles.total_title}>{t("TotalIncome_title")}</Text>
             </View>
             <View style={styles.header}>
                 <View style={styles.section}>
                     <View style={{ alignItems: "center" }}>
-                        <Text style={styles.section_title}>Rated</Text>
+                        <Text style={styles.section_title}>{t("Rated_title")}</Text>
                         <Text style={styles.section_value}>{currentRating}%</Text>
                     </View>
                     <View style={{ alignItems: "center" }}>
-                        <Text style={styles.section_title}>Date</Text>
+                        <Text style={styles.section_title}>{t("Date_title")}</Text>
                         <Text style={styles.section_value}>{TimestampConverter.convert(new Date()).newMonth}</Text>
                     </View>
                 </View>
                 <TouchableOpacity style={styles.button_newIncome} onPress={() => handleOpenNewIncome()}>
                     <MaterialIcons name="data-saver-off" size={24} color="#0099cc" />
-                    <Text style={styles.button_newIncome_title}>New Income</Text>
+                    <Text style={styles.button_newIncome_title}>{t("NewIncome_title")}</Text>
                 </TouchableOpacity>
             </View>
             <View style={styles.income_month}>
-                <Text style={styles.income_month_title}><MaterialCommunityIcons name="calendar-month" size={18} color="#737373" /> Monthly Income</Text>
+                <Text style={styles.income_month_title}><MaterialCommunityIcons name="calendar-month" size={18} color="#737373" /> {t("MonthlyIncome_title")}</Text>
                 <View style={styles.income_list}>{incomeComponent}</View>
             </View>
             <Modal animationType="slide" transparent={true} visible={modalVisible}>

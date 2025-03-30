@@ -1,3 +1,60 @@
 {
-    "test": "test"
+    "Profile_title": "Profile",
+    "Account_title": "Account",
+    "ShareProfile_title": "Share your profile" ,
+    "Information_title": "Information",
+
+    "Setting_title": "Setting",
+    "Preferences_title": "Preferences",
+    "Theme_title": "Theme",
+    "Light_title": "Light",
+    "Notification_title": "Notification",
+    "On_title": "On",
+    "Language_title": "Language",
+    "Language_value_title":"English",
+    "About_title": "About",
+    "Logout_title": "Logout",
+    
+    "Overview_title": "Overview",
+    "Spend-amount-month_title":"Your spending amount this month: ",
+    "Income-amount-month_title":"Income amount this month: ",
+    "DailySpend_title": "Daily spending",
+    "7days_title": "7 days",
+
+    "Budget_title": "Budget",
+    "Spend_title": "Spend",
+    "Income_title": "Income",
+
+    "Income_title":"Income",
+    "TotalIncome_title": "Total Income",
+    "Rated_title": "Rated",
+    "Date_title": "Date",
+    "NewIncome_title": "New Income",
+    "MonthlyIncome_title": "Monthly Income",
+    "items_title": "items",
+
+    "Income Detail": "Income Detail",
+    "Add_title": "Add",
+    "Detail_title": "Detail",
+
+    "New Income": "New Income",
+    "NewIncome_title": "New Income",
+    "Title_title": "Title",
+    "Price_title": "Price",
+    "Save_title": "Save",
+
+    "Spend": "Spend",
+    "MoneySpent_title": "Money Spent :",
+    "SpentTypes_title": "Spend Types",
+    "Note_title": "Note",
+    "Save_title": "Save",
+
+    "NewSpendType_title": "New Spend Type",
+    "Name_title": "Name",
+    "Price_title": "Price",
+    "ChooseImage_title": "Choose Image",
+    "Save_title": "Save",
+    "Exit_title": "Exit",
+    "ChooseIcon_title": "Choose Icon",
+    "Close_title": "Close"
 }

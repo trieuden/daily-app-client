@@ -1,20 +1,22 @@
 import React, { useState, useRef } from "react";
 import { View, TouchableOpacity, StyleSheet, Text, TextInput, Image, Alert, Modal, FlatList } from "react-native";
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import * as FileSystem from 'expo-file-system';
+import { captureRef } from 'react-native-view-shot';
 
-import SpendTypeController from "../../../controller/SpendTypeController";
+import { useTranslation } from "react-i18next";
+
 import useSpendTypes from "../../../../hook/UseSpendTypes";
 
 import { ConvertToBase64 } from "../../../../utils/ConvertToBase64";
 
-import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
-import { captureRef } from 'react-native-view-shot';
-
 import { styles } from "../../../css/budget/spend/NewSpendTypeStyle";
+import SpendTypeController from "../../../controller/spend/SpendTypeController";
 
 const NewSpendType = ({ onCloseModal }) => {
+    const {t} = useTranslation()
+
     const [imageUri, setImageUri] = useState();
     const [base64Image, setBase64Image] = useState('');
     const [name, setName] = useState(null);
@@ -101,12 +103,12 @@ const NewSpendType = ({ onCloseModal }) => {
         <View style={styles.container}>
             <View style={styles.box}>
                 <View style={styles.header}>
-                    <Text style={styles.title}>New Spend Type</Text>
+                    <Text style={styles.title}>{t("NewSpendType_title")}</Text>
                 </View>
                 <View style={styles.inputComponent}>
                     <View style={[styles.input]}>
                         <View style={styles.inputName}>
-                            <Text style={styles.inputName_text}>Name</Text>
+                            <Text style={styles.inputName_text}>{t("Name_title")}</Text>
                         </View>
                         <TextInput
                             style={styles.inputValue}
@@ -115,7 +117,7 @@ const NewSpendType = ({ onCloseModal }) => {
                     </View>
                     <View style={styles.input}>
                         <View style={styles.inputName}>
-                            <Text style={styles.inputName_text}>Price</Text>
+                            <Text style={styles.inputName_text}>{t("Price_title")}</Text>
                         </View>
                         <TextInput
                             style={styles.inputValue}
@@ -129,7 +131,7 @@ const NewSpendType = ({ onCloseModal }) => {
                                 <View style={styles.icon_touch}>
                                     <MaterialCommunityIcons name="emoticon-outline" size={24} color="black" />
                                 </View>
-                                <Text style={styles.touch_text}>Choose Image</Text>
+                                <Text style={styles.touch_text}>{t("ChooseImage_title")}</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.camera_touch} onPress={pickImage}>
                                 <AntDesign name="camerao" size={25} color="black" />
@@ -150,10 +152,10 @@ const NewSpendType = ({ onCloseModal }) => {
                 </View>
                 <View style={styles.buttonComponent}>
                     <TouchableOpacity style={[styles.touch, styles.touch_left]} onPress={handleNewSpendType}>
-                        <Text style={[styles.touch_text, styles.touch_text_left]}>Save</Text>
+                        <Text style={[styles.touch_text, styles.touch_text_left]}>{t("Save_title")}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.touch} onPress={() => { onCloseModal(false) }}>
-                        <Text style={styles.touch_text}>Exit</Text>
+                        <Text style={styles.touch_text}>{t("Exit_title")}</Text>
                     </TouchableOpacity>
                 </View>
 
@@ -165,7 +167,7 @@ const NewSpendType = ({ onCloseModal }) => {
                 >
                     <View style={styles.modal}>
                         <View style={styles.modal_view}>
-                            <Text style={styles.modal_title}>Choose Icon</Text>
+                            <Text style={styles.modal_title}>{t("ChooseIcon_title")}</Text>
                             <FlatList
                                 data={icons}
                                 keyExtractor={(item) => item}
@@ -177,7 +179,7 @@ const NewSpendType = ({ onCloseModal }) => {
                                 )}
                             />
                             <TouchableOpacity onPress={() => setModalVisible(false)} style={styles.touch_close}>
-                                <Text style={styles.touch_close_text}>Close</Text>
+                                <Text style={styles.touch_close_text}>{t("Close_title")}</Text>
                             </TouchableOpacity>
                         </View>
                     </View>

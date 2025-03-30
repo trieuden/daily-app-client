@@ -6,7 +6,6 @@ import { styles } from '../../css/account/AccountStyle';
 import getCurrentAccount from '../../../utils/UseCurrentAccount';
 
 import { useTranslation } from 'react-i18next';
-import i18next from '../../../../services/i18next';
 
 const imageBackground = require('../../../../assets/images/imageBackground.png');
 
@@ -41,7 +40,7 @@ const Account = () => {
                     <View style={styles.container}>
                         <View style={styles.header}>
                             <ImageBackground source={imageBackground} style={styles.imageBackground}>
-                                <Text style={styles.title}>Profile</Text>
+                                <Text style={styles.title}>{t("Profile_title")}</Text>
                             </ImageBackground>
                         </View>
                         <View style={styles.info}>
@@ -59,21 +58,21 @@ const Account = () => {
                                     <TouchableOpacity style={styles.modal}>
                                         <View style={styles.modal_item}>
                                             <MaterialIcons name="account-box" size={23} color="#999999" />
-                                            <Text style={styles.modal_text}>Account</Text>
+                                            <Text style={styles.modal_text}>{t("Account_title")}</Text>
                                         </View>
                                         <MaterialIcons name="navigate-next" size={30} color="black" />
                                     </TouchableOpacity>
                                     <View style={styles.modal}>
                                         <View style={styles.modal_item}>
                                             <Feather name="share-2" size={23} color="#999999" />
-                                            <Text style={styles.modal_text}>Share your profile</Text>
+                                            <Text style={styles.modal_text}>{t("ShareProfile_title")}</Text>
                                         </View>
                                         <MaterialIcons name="navigate-next" size={30} color="black" />
                                     </View>
                                     <TouchableOpacity style={styles.modal}>
                                         <View style={styles.modal_item}>
                                             <AntDesign name="exclamationcircle" size={23} color="#999999" />
-                                            <Text style={styles.modal_text}>Information</Text>
+                                            <Text style={styles.modal_text}>{t("Information_title")}</Text>
                                         </View>
                                         <MaterialIcons name="navigate-next" size={30} color="black" />
                                     </TouchableOpacity>

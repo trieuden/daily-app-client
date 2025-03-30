@@ -91,7 +91,7 @@ function useSpends() {
     }
 
     const getSpendByUserIdAndDate = async (userId, date) => {
-        const spends = await spendsAPI.getSpendByUserIdAndDate(userId, date);
+        const spends = await spendsAPI.getSpendByUserIdAndDate(userId, date);           
         return spends.data
     }
 

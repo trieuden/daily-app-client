@@ -1,0 +1,60 @@
+{
+    "Profile_title": "Hồ sơ",
+    "Account_title": "Tài khoản",
+    "ShareProfile_title": "Chia sẻ hồ sơ" ,
+    "Information_title": "Thông tin",
+
+    "Setting_title": "Cài Đặt",
+    "Preferences_title": "Ưu tiên",
+    "Theme_title": "Giao diện",
+    "Light_title": "Sáng",
+    "Notification_title": "Thông báo",
+    "On_title": "Mở",
+    "Language_title": "Ngôn ngữ",
+    "Language_value_title":"Tiếng việt",
+    "About_title": "Khác",
+    "Logout_title": "Đăng xuất",
+    
+    "Overview_title": "Tổng quan",
+    "Spend-amount-month_title":"Tổng chi tiêu tháng : ",
+    "Income-amount-month_title":"Tổng doanh thu tháng: ",
+    "DailySpend_title": "Chi tiêu hằng ngày",
+    "7days_title": "7 Ngày",
+
+    "Budget_title": "Chi tiêu",
+    "Spend_title": "Chi",
+    "Income_title": "Thu",
+
+    "Income_title":"Thu",
+    "TotalIncome_title": "Tổng Thu",
+    "Rated_title": "Rated",
+    "Date_title": "Ngày",
+    "NewIncome_title": "Mới",
+    "MonthlyIncome_title": "Thu nhập hằng tháng",
+    "items_title": "mục",
+
+    "Income Detail": "Income Detail",
+    "Add_title": "Thêm",
+    "Detail_title": "Chi tiết",
+    
+    "New Income": "New Income",
+    "NewIncome_title": "Thu nhập mới",
+    "Title_title": "Tên mục",
+    "Price_title": "Số tiền",
+    "Save_title": "Lưu",
+
+    "Spend": "Spend",
+    "MoneySpent_title": "Số tiền :",
+    "SpentTypes_title": "Loại chi",
+    "Note_title": "Ghi chú",
+    "Save_title": "Lưu",
+
+    "NewSpendType_title": "Loại chi tiêu mới",
+    "Name_title": "Tên",
+    "Price_title": "Số tiền",
+    "ChooseImage_title": "Chọn ảnh",
+    "Save_title": "Lưu",
+    "Exit_title": "Thoát",
+    "ChooseIcon_title": "Chọn Icon",
+    "Close_title": "Đóng"
+}

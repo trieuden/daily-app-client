@@ -9,7 +9,7 @@ import Budget from './budget/Budget';
 import Setting from './setting/Setting';
 import Overview from './overview/Overview';
 
-const Main = ({setKey}) => {
+const UserMain = ({setKey}) => {
 
   const Stack = createStackNavigator();
 
@@ -30,4 +30,4 @@ const Main = ({setKey}) => {
   );
 };
 
-export default Main;
+export default UserMain;
